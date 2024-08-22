@@ -1,6 +1,10 @@
 package org.example;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.*;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,14 +68,37 @@ class CalculatorTest {
         assertEquals(expected, actual.getMessage(), "Unexpected Exception message");
     }
 
-    @DisplayName("Test 5 -1 = 4")
-    @Test
-    void testSubstraction() {
-        int minuend = 5;
-        int subtrachend = 1;
-        int expected = 4;
-        int actual = calculator.substractInteger(5, 1);
-        assertEquals(expected, actual, () -> minuend + " - " + subtrachend + "is not " + actual);
+    @DisplayName("Test Integer Subtraction [minuend, subtrahend, expected]")
+    @ParameterizedTest
+//    @MethodSource("subtractIntegerInputParameters")
+//    @MethodSource // Same as method name
+//    @CsvSource({
+//            "33, 1, 32",
+//            "200, 100, 100",
+//            "321, 33, 288"
+//    })
+    @CsvFileSource(resources = "/integer.csv")
+    void testSubtraction(int minuend, int subtrahend, int expected) {
+        int actual = calculator.subtractInteger(minuend, subtrahend);
+        assertEquals(expected, actual, () -> minuend + " - " + subtrahend + "is not " + actual);
+    }
+
+//    private static Stream<Arguments> subtractIntegerInputParameters() {
+    private static Stream<Arguments> testSubtraction() {
+        return Stream.of(
+                Arguments.of(33, 1, 32),
+                Arguments.of(34, 2, 32),
+                Arguments.of(100, 1000, -900),
+                Arguments.of(5, 34, -29),
+                Arguments.of(35, 9, 26)
+        );
+    }
+
+    @ValueSource(strings = {"Jason", "John", "Emma"})
+    @ParameterizedTest
+    void valueSourceDemonstration(String firstName) {
+        System.out.println(firstName);
+        assertNotNull(firstName);
     }
 
 }

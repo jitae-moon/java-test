@@ -6,8 +6,8 @@ public class Calculator {
         return dividend / divisor;
     }
 
-    public int substractInteger(int minuend, int subtrachend) {
-        return minuend - subtrachend;
+    public int subtractInteger(int minuend, int subtrahend) {
+        return minuend - subtrahend;
     }
 
 }
