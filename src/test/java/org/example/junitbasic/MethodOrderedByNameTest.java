@@ -1,16 +1,11 @@
-package org.example;
+package org.example.junitbasic;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-@TestMethodOrder(MethodOrderer.Random.class)
-class MethodOrderedRandomlyTest {
-
-    @Test
-    void testA() {
-        System.out.println("testA()");
-    }
+@TestMethodOrder(MethodOrderer.MethodName.class)
+class MethodOrderedByNameTest {
 
     @Test
     void testB() {
@@ -26,5 +21,11 @@ class MethodOrderedRandomlyTest {
     void testD() {
         System.out.println("testD()");
     }
+
+    @Test
+    void testA() {
+        System.out.println("testA()");
+    }
+
 
 }

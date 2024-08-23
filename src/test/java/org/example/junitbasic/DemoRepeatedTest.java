@@ -1,5 +1,6 @@
-package org.example;
+package org.example.junitbasic;
 
+import org.example.tdd.Calculator;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
